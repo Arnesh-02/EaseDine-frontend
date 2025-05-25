@@ -1,15 +1,29 @@
 /* Global Styles */
 :root {
-  --primary-color: #FF6347; /* Tomato Orange */
-  --primary-color-dark: #E5533D;
-  --secondary-color: #FFD700; /* Gold - for accents */
+  /* New Fdelivery Color Scheme */
+  --primary: #FF6B00;         /* Main Orange */
+  --primary-rgb: 255, 107, 0; /* For rgba box-shadows etc. */
+  --primary-dark: #E05A00;    /* Darker Orange for hovers */
+  --secondary: #FF9500;       /* Accent Orange / Gold */
+  --secondary-dark: #E68600;  /* Darker Accent Orange */
+  --accent: #007AFF;          /* Blue for specific CTAs or highlights */
+  --accent-dark: #005BB5;     /* Darker Blue */
+  --veg: #00A651;             /* Green for vegetarian items */
+  --nonveg: #D0021B;           /* Red for non-vegetarian items */
+
+  /* Base Tones */
   --text-color: #333;
+  --text-light: #555;
   --background-color: #FFF8F0; /* Light creamy background */
-  --neutral-light: #f4f4f4;
-  --neutral-dark: #555;
+  --neutral-light: #f4f4f4;    /* For cards, inputs */
+  --neutral-medium: #e0e0e0;   /* Borders, dividers */
+  --neutral-dark: #555;        /* Subdued text, icons */
   --white: #fff;
+  --black: #000;
+
+  /* Fonts */
   --font-primary: 'Poppins', sans-serif;
-  --font-logo: 'Lobster', cursive;
+  --font-logo: 'Lobster', cursive; /* Existing logo font */
 }
 
 * {
@@ -43,11 +57,11 @@ p {
 
 a {
   text-decoration: none;
-  color: var(--primary-color);
+  color: var(--primary);
 }
 
 a:hover {
-  color: var(--primary-color-dark);
+  color: var(--primary-dark);
 }
 
 img {
@@ -61,18 +75,20 @@ button {
   cursor: pointer;
   border: none;
   padding: 10px 20px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 6px; /* Slightly more rounded */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-primary {
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   color: var(--white);
+  font-weight: 500;
 }
 
 .btn-primary:hover {
-  background-color: var(--primary-color-dark);
+  background-color: var(--primary-dark);
   transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(var(--primary-rgb), 0.2);
 }
 
 /* Utility Classes */
@@ -87,5 +103,19 @@ button {
 @media (max-width: 768px) {
   .section-padding {
     padding: 40px 0;
+  }
+}
+
+/* Main content padding adjustment when cart sidebar is open */
+.post-login-main.sidebar-open-padding {
+  /* Adjust padding-right to match sidebar width + some gap */
+  /* This is a basic example, might need more sophisticated handling with fixed sidebars */
+  padding-right: 420px; /* Assuming max-width of sidebar is 400px + 20px gap */
+  transition: padding-right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@media (max-width: 480px) {
+  .post-login-main.sidebar-open-padding {
+    padding-right: 0; /* On small screens, sidebar might overlay fully */
   }
 }

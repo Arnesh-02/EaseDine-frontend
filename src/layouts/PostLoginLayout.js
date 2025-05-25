@@ -9,11 +9,12 @@ const PostLoginLayout = () => {
   const { isAuthenticated } = useSelector((state) => state.user);
   const { isCartSidebarOpen } = useSelector((state) => state.ui);
 
-  if (!isAuthenticated) {
-    // If not authenticated, redirect to a login page or homepage
-    // For now, redirecting to homepage. Later, this could be '/login'
-    return <Navigate to="/" replace />;
-  }
+  // TEMPORARY: Forcing login via DashboardPage's useEffect.
+  // In a real app, this layout should strictly redirect if !isAuthenticated.
+  // For now, we let DashboardPage handle the mock login.
+  // if (!isAuthenticated) {
+  //   return <Navigate to="/" replace />;
+  // }
 
   return (
     <>

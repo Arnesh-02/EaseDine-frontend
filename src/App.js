@@ -25,19 +25,6 @@ import DashboardPage from './pages/DashboardPage';
 // import CheckoutPage from './pages/CheckoutPage'; // To be created
 
 
-// A simple component to handle redirection based on auth state
-const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useSelector((state) => state.user);
-  if (!isAuthenticated) {
-    // Redirect them to the /login page, but if they're already on /
-    // or other public pages, let them stay.
-    // This specific ProtectedRoute is for routes that *require* login.
-    return <Navigate to="/" replace />; // Or to a dedicated login page e.g. /login
-  }
-  return children;
-};
-
-
 function App() {
   return (
     <Router>

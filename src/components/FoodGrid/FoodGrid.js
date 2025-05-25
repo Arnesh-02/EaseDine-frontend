@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaStar, FaCartPlus, FaHeart, FaRegHeart } from 'react-icons/fa';
 import { addItemToCart } from '../../store/cartSlice';
