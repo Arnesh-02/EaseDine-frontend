@@ -1,0 +1,80 @@
+.value-proposition-section {
+  background-color: var(--white); /* Slightly different from main background for contrast */
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--neutral-dark);
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+  line-height: 1.7;
+}
+
+.value-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.value-card {
+  background-color: var(--background-color); /* Use main bg for cards */
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.value-card-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  display: inline-block; /* Allows hover effect on icon if needed */
+}
+
+.value-card-title {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  margin-bottom: 0.75rem;
+}
+
+.value-card-description {
+  font-size: 0.95rem;
+  color: var(--neutral-dark);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  .section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  .value-cards-container {
+    grid-template-columns: 1fr; /* Stack cards on smaller screens */
+    gap: 20px;
+  }
+  .value-card {
+    padding: 25px;
+  }
+  .value-card-icon {
+    font-size: 2.5rem;
+  }
+  .value-card-title {
+    font-size: 1.3rem;
+  }
+}

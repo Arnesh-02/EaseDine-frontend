@@ -1,0 +1,332 @@
+/* LoggedInNavbar.css */
+.li-navbar {
+  background-color: var(--white);
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+.li-navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.97);
+  padding: 0.75rem 0;
+  backdrop-filter: blur(5px);
+}
+
+.li-navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.li-navbar-logo {
+  font-family: var(--font-logo);
+  font-size: 2.5rem;
+  color: var(--primary-color); /* Using new primary from instructions */
+  text-decoration: none;
+}
+
+.li-navbar-menu {
+  display: flex;
+  align-items: center;
+}
+
+.li-navbar-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.li-navbar-links li {
+  margin-left: 25px;
+}
+
+.li-navbar-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 5px 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.li-navbar-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.li-navbar-links a:hover,
+.li-navbar-links a.active { /* Assuming React Router's NavLink active class */
+  color: var(--primary-color);
+}
+
+.li-navbar-links a:hover::after,
+.li-navbar-links a.active::after {
+  width: 100%;
+}
+
+.li-navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.li-navbar-search-desktop,
+.li-navbar-search-mobile {
+  display: flex;
+  align-items: center;
+  background-color: var(--neutral-light);
+  padding: 8px 12px;
+  border-radius: 20px;
+}
+
+.li-navbar-search-desktop input,
+.li-navbar-search-mobile input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin-right: 8px;
+  font-size: 0.9rem;
+  width: 180px;
+}
+
+.li-navbar-search-desktop button,
+.li-navbar-search-mobile button {
+  background: none;
+  border: none;
+  color: var(--neutral-dark);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0;
+}
+
+.li-navbar-search-mobile {
+  display: none; /* Hidden by default, shown in mobile menu */
+  margin: 20px;
+  width: calc(100% - 40px);
+}
+
+.li-navbar-action-btn {
+  background: none;
+  border: none;
+  color: var(--neutral-dark);
+  cursor: pointer;
+  font-size: 1.5rem; /* Icon size */
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  position: relative; /* For cart count */
+}
+
+.li-navbar-action-btn:hover {
+  background-color: var(--neutral-light);
+}
+
+.cart-item-count {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: var(--accent); /* Using new accent color */
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.li-navbar-profile {
+  position: relative;
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+.profile-avatar-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profile-greeting {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-color);
+  display: none; /* Hidden on small screens initially */
+}
+@media (min-width: 400px) { /* Show greeting on slightly larger mobile */
+  .profile-greeting {
+    display: inline;
+  }
+}
+
+
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  width: 280px;
+  z-index: 1001;
+  overflow: hidden;
+  animation: fadeInDropdown 0.2s ease-out;
+}
+
+@keyframes fadeInDropdown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-user-info {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  gap: 15px;
+  border-bottom: 1px solid var(--neutral-light);
+}
+.dropdown-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.dropdown-username {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-color);
+  margin: 0;
+}
+.dropdown-email {
+  font-size: 0.85rem;
+  color: var(--neutral-dark);
+  margin: 0;
+}
+
+.profile-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-dropdown ul li a,
+.profile-dropdown ul li button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.profile-dropdown ul li a svg,
+.profile-dropdown ul li button svg {
+  font-size: 1.2rem;
+  color: var(--neutral-dark);
+}
+
+.profile-dropdown ul li a:hover,
+.profile-dropdown ul li button:hover {
+  background-color: var(--neutral-light);
+}
+
+
+.li-navbar-mobile-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+/* Mobile Styles */
+@media (max-width: 992px) {
+  .li-navbar-search-desktop {
+    display: none;
+  }
+  .li-navbar-links li {
+    margin-left: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .li-navbar-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background-color: var(--white);
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 70px; /* Space for close button */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease-in-out;
+    overflow-y: auto;
+  }
+
+  .li-navbar-menu.active {
+    left: 0;
+  }
+
+  .li-navbar-links {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .li-navbar-links li {
+    margin: 0;
+    width: 100%;
+  }
+
+  .li-navbar-links a {
+    display: block;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--neutral-light);
+    font-size: 1.1rem;
+  }
+   .li-navbar-links a:hover::after,
+   .li-navbar-links a.active::after {
+    width: 0;
+  }
+   .li-navbar-links a:hover,
+   .li-navbar-links a.active {
+    background-color: var(--neutral-light);
+  }
+
+  .li-navbar-search-mobile {
+    display: flex;
+  }
+  .profile-greeting {
+    display: none; /* Hide greeting text on smaller mobile nav actions */
+  }
+
+  .li-navbar-mobile-icon {
+    display: block;
+    z-index: 1001;
+  }
+}

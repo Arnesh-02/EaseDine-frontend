@@ -1,0 +1,163 @@
+.recommendation-sections-container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.recommendation-row {
+  margin-bottom: 40px;
+}
+
+.recommendation-row:last-child {
+  margin-bottom: 0;
+}
+
+.recommendation-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary-color); /* Use new primary */
+  display: inline-block; /* So border only spans text width */
+}
+
+.recommendation-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 20px; /* Space for scrollbar */
+  gap: 20px;
+  /* Hide scrollbar visually but keep functionality */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.recommendation-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+
+.reco-item-card {
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  min-width: 220px; /* Min width for each card */
+  max-width: 250px; /* Max width for each card */
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.reco-item-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+.reco-item-image-link img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block; /* Remove extra space below image */
+}
+
+.reco-item-content {
+  padding: 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.reco-item-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 8px;
+  line-height: 1.3;
+  /* Truncate long names */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 2.6em; /* Approx 2 lines */
+}
+.reco-item-content a {
+    text-decoration: none;
+}
+.reco-item-content a:hover .reco-item-name {
+    color: var(--primary-color);
+}
+
+
+.reco-item-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--neutral-dark);
+  margin-bottom: 12px;
+}
+
+.reco-item-price {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.reco-item-rating svg {
+  color: var(--secondary-color); /* Gold for stars */
+  margin-right: 3px;
+  font-size: 0.9em;
+}
+.reco-item-distance {
+    font-style: italic;
+}
+
+.reco-add-to-cart-btn {
+  background-color: var(--secondary-color); /* Use new secondary */
+  color: var(--white);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  margin-top: auto; /* Pushes to bottom */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.reco-add-to-cart-btn:hover {
+  background-color: #e68600; /* Darker secondary */
+}
+
+/* Distinct visual treatments (examples) */
+.recommendation-row:nth-child(odd) {
+  /* background-color: var(--neutral-light); /* Example: alternate row bg */
+  /* padding: 20px 0; */
+}
+.recommendation-row:nth-child(1) .recommendation-title { /* Continue Your Taste */
+  border-bottom-color: var(--accent);
+}
+.recommendation-row:nth-child(3) .recommendation-title { /* New Try-Outs */
+  border-bottom-color: var(--veg);
+}
+
+
+@media (max-width: 768px) {
+  .recommendation-title {
+    font-size: 1.4rem;
+  }
+  .reco-item-card {
+    min-width: 200px;
+    max-width: 220px;
+  }
+  .reco-item-image-link img {
+    height: 130px;
+  }
+  .reco-item-name {
+    font-size: 1rem;
+  }
+}

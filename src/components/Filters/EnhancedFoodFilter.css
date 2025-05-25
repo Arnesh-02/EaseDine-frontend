@@ -1,0 +1,163 @@
+.enhanced-food-filter-container {
+  background-color: var(--background-color); /* Or var(--white) if preferred */
+  border-bottom: 1px solid var(--neutral-light);
+}
+
+.filter-title {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.filter-controls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 2rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--neutral-dark);
+  margin-bottom: 8px;
+}
+
+.filter-group input[type="text"],
+.filter-group select {
+  padding: 12px;
+  border: 1px solid #ddd; /* Softer border */
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: var(--white);
+  transition: border-color 0.2s ease;
+}
+
+.filter-group input[type="text"]:focus,
+.filter-group select:focus {
+  outline: none;
+  border-color: var(--primary-color); /* Use new primary color */
+  box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.2); /* Create --primary-color-rgb if needed */
+}
+
+/* Placeholder for --primary-color-rgb if not defined in App.css */
+/* :root { --primary-color-rgb: 255, 107, 0; } */
+
+
+.veg-toggle-filter .veg-options {
+  display: flex;
+  gap: 10px;
+}
+
+.veg-toggle-filter .veg-options button {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: var(--white);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  font-weight: 500;
+}
+
+.veg-toggle-filter .veg-options button.active {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-color: var(--primary-color);
+}
+.veg-toggle-filter .veg-options button.veg.active {
+  background-color: var(--veg); /* Use new veg color */
+  border-color: var(--veg);
+}
+.veg-toggle-filter .veg-options button.non-veg.active {
+  background-color: var(--nonveg); /* Use new nonveg color */
+  border-color: var(--nonveg);
+}
+.veg-toggle-filter .veg-options button.veg:not(.active):hover {
+  border-color: var(--veg);
+  color: var(--veg);
+}
+.veg-toggle-filter .veg-options button.non-veg:not(.active):hover {
+  border-color: var(--nonveg);
+  color: var(--nonveg);
+}
+
+
+.price-slider-input {
+  width: 100%;
+  margin-top: 5px; /* Adjust as needed */
+}
+
+.category-filter .category-tabs {
+  display: flex;
+  flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
+  gap: 10px;
+  margin-top: 5px;
+  padding-bottom: 10px; /* For scrollbar if it becomes scrollable horizontally */
+  overflow-x: auto; /* Enable horizontal scroll on mobile */
+}
+
+.category-tab {
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--neutral-dark);
+  background-color: var(--neutral-light);
+  border: 1px solid transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Prevent text wrapping in tabs */
+}
+
+.category-tab:hover {
+  background-color: #e0e0e0; /* Slightly darker hover */
+  border-color: #ccc;
+}
+
+.category-tab.active {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-color: var(--primary-color);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.reset-filters-btn {
+  display: block;
+  margin: 2rem auto 0;
+  padding: 12px 25px;
+  background-color: var(--accent); /* Use new accent color */
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.reset-filters-btn:hover {
+  background-color: #005bb5; /* Darker accent */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .filter-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .filter-controls-grid {
+    grid-template-columns: 1fr; /* Stack controls */
+    gap: 20px;
+  }
+  .category-tabs {
+    /* Ensure horizontal scrollbar is visible if needed */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+}

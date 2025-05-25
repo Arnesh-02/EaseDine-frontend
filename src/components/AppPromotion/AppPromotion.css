@@ -1,0 +1,103 @@
+.app-promotion-section {
+  background-color: var(--neutral-light); /* A slightly different background */
+}
+
+.app-promotion-container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.app-promotion-image {
+  flex: 1;
+  text-align: center; /* Center image if it's smaller than container */
+}
+
+.app-promotion-image img {
+  max-width: 100%;
+  height: auto;
+  max-height: 550px; /* Control max height of mockup */
+  border-radius: 20px; /* Optional: if mockup image itself doesn't have rounded corners */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.app-promotion-content {
+  flex: 1.2; /* Give slightly more space to content */
+  padding-left: 20px;
+}
+
+.app-promotion-content .section-title {
+  font-size: 2.2rem;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+.app-promotion-content p {
+  font-size: 1rem;
+  color: var(--neutral-dark);
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.app-download-badges {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.app-badge {
+  height: 50px; /* Adjust based on your badge image aspect ratio */
+  width: auto;
+  transition: transform 0.2s ease;
+}
+
+.app-badge:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .app-promotion-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .app-promotion-content {
+    padding-left: 0;
+    margin-top: 30px;
+  }
+  .app-promotion-content .section-title {
+    font-size: 2rem;
+  }
+  .app-download-badges {
+    justify-content: center;
+  }
+  .app-promotion-image img {
+    max-height: 450px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-promotion-content .section-title {
+    font-size: 1.8rem;
+  }
+  .app-promotion-content p {
+    font-size: 0.95rem;
+  }
+  .app-badge {
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-promotion-image img {
+    max-height: 350px;
+  }
+  .app-badge {
+    height: 40px;
+  }
+  .app-download-badges {
+    gap: 15px;
+    flex-direction: column; /* Stack badges on very small screens */
+  }
+}

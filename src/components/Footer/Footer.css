@@ -1,0 +1,106 @@
+.footer-section {
+  background-color: #2C2C2C; /* Dark background for footer */
+  color: var(--neutral-light);
+  padding-top: 60px;
+  padding-bottom: 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-column h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.footer-column h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 40px;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+  color: var(--neutral-light);
+  text-decoration: none;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+  font-size: 0.95rem;
+  display: flex; /* For icon alignment */
+  align-items: center;
+}
+
+.footer-column ul li a:hover {
+  color: var(--primary-color);
+  padding-left: 5px;
+}
+
+.footer-column ul li a svg { /* For icons in contact list */
+  margin-right: 8px;
+  font-size: 1.1rem;
+  color: var(--primary-color); /* Icon color */
+}
+
+
+.footer-copyright {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid #444; /* Separator line */
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.footer-copyright p {
+  margin-bottom: 0.5rem;
+}
+
+.footer-copyright p:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 2 columns for tablet */
+    gap: 25px;
+  }
+  .footer-column h4 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-grid {
+    grid-template-columns: 1fr; /* Stack columns on small mobile */
+    text-align: center; /* Center text in stacked columns */
+  }
+  .footer-column h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .footer-column ul li a {
+    justify-content: center; /* Center links with icons */
+  }
+   .footer-column ul li a:hover {
+    padding-left: 0; /* No padding shift on hover for centered items */
+  }
+}
