@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 import { FiSearch, FiMenu, FiX } from 'react-icons/fi'; // Using Feather Icons
 
@@ -23,13 +24,13 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container container">
-        <a href="/" className="navbar-logo">
+        <Link to="/" className="navbar-logo">
           Fdelivery
-        </a>
+        </Link>
 
         <div className={`navbar-menu ${isMobileMenuOpen ? 'active' : ''}`}>
           <ul className="navbar-links">
-            <li><a href="#home" onClick={() => isMobileMenuOpen && toggleMobileMenu()}>Home</a></li>
+            <li><Link to="/" onClick={() => isMobileMenuOpen && toggleMobileMenu()}>Home</Link></li>
             <li><a href="#about" onClick={() => isMobileMenuOpen && toggleMobileMenu()}>About</a></li>
             <li><a href="#shop" onClick={() => isMobileMenuOpen && toggleMobileMenu()}>Shop</a></li>
             <li><a href="#food" onClick={() => isMobileMenuOpen && toggleMobileMenu()}>Food</a></li>

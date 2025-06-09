@@ -10,8 +10,9 @@ import PostLoginLayout from './layouts/PostLoginLayout';
 
 // Pre-Login Pages
 import HomePage from './pages/HomePage';
-// import LoginPage from './pages/LoginPage'; // To be created
-// import SignupPage from './pages/SignupPage'; // To be created
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 // Post-Login Pages
 import DashboardPage from './pages/DashboardPage';
@@ -30,10 +31,12 @@ function App() {
     <Router>
       <Routes>
         {/* Pre-Login Routes */}
+        {/* All pre-login pages with PreLoginLayout */}
         <Route element={<PreLoginLayout />}>
           <Route path="/" element={<HomePage />} />
-          {/* <Route path="/login" element={<LoginPage />} /> */}
-          {/* <Route path="/signup" element={<SignupPage />} /> */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           {/* Add other public routes like /about, /contact here if they use PreLoginLayout */}
         </Route>
 

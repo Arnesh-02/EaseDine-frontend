@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Hero.css';
 // import HeroBackgroundImage from '../../assets/images/hero-background.jpg'; // Example: uncomment and replace with your image path
 
@@ -29,9 +30,17 @@ const Hero = () => {
         <p className="supporting-text">
           Food that is delivered at the right time. The trendy food delivery partner. Good food is what we deliver. Your hunger companion.
         </p>
-        <a href="#recipes" className="btn-primary hero-cta">
-          Explore Food
-        </a>
+        <div className="hero-buttons">
+          <a href="#recipes" className="btn-primary hero-cta">
+            Explore Food
+          </a>
+          <Link to="/login" className="btn-secondary hero-cta">
+            Login
+          </Link>
+          <Link to="/signup" className="btn-outline hero-cta">
+            Sign Up
+          </Link>
+        </div>
       </div>
     </section>
   );
