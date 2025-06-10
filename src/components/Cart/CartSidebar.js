@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FiX, FiTrash2, FiPlus, FiMinus } from 'react-icons/fi';
-import { toggleCartSidebar } from '../../store/uiSlice';
+import { toggleCartSidebar, setToast } from '../../store/uiSlice';
 import { addItemToCart, removeItemFromCart, clearCart } from '../../store/cartSlice';
 import './CartSidebar.css';
 
@@ -16,14 +16,20 @@ const CartSidebar = () => {
 
   const handleAddItem = (item) => {
     dispatch(addItemToCart({ id: item.id, name: item.name, price: item.price, image: item.image }));
+    dispatch(setToast({ message: `Added one ${item.name} to cart`, type: 'success' }));
   };
 
   const handleRemoveItem = (itemId) => {
+    const item = items.find(i => i.id === itemId);
     dispatch(removeItemFromCart(itemId));
+    if (item && item.quantity === 1) {
+      dispatch(setToast({ message: `Removed ${item.name} from cart`, type: 'success' }));
+    }
   };
 
   const handleClearCart = () => {
     dispatch(clearCart());
+    dispatch(setToast({ message: 'Cart cleared!', type: 'success' }));
   };
 
   return (

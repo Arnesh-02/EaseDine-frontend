@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { FaEye, FaEyeSlash, FaEnvelope, FaMobileAlt, FaGoogle, FaFacebook } from 'react-icons/fa';
+import { loginUser } from '../store/userSlice';
+import { setToast } from '../store/uiSlice';
 import './AuthPages.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     emailOrPhone: '',
     password: '',
@@ -67,11 +71,41 @@ const LoginPage = () => {
         
         // Demo user check
         if (formData.emailOrPhone === 'demo@fdelivery.com' && formData.password === 'password123') {
-          // Successful login
+          // Mock user profile
+          const mockUserProfile = {
+            id: 'user123',
+            name: 'Asha K.',
+            email: formData.emailOrPhone,
+            avatar: 'https://via.placeholder.com/100/FF6B00/FFFFFF?Text=A',
+            lastOrders: [
+              { id: 'lo1', name: 'Veggie Delight Pizza', image: 'https://via.placeholder.com/100x80.png?text=Pizza' },
+              { id: 'lo2', name: 'Paneer Tikka Masala', image: 'https://via.placeholder.com/100x80.png?text=Paneer' },
+            ],
+            preferences: {
+              vegetarian: true,
+              favoriteCuisines: ["Indian", "Italian"]
+            },
+            seasonalSpecials: [
+              { id: 'ss1', name: 'Monsoon Special Thali', link: '/item/ss1' },
+              { id: 'ss2', name: 'Summer Cooler Mocktail', link: '/item/ss2' }
+            ]
+          };
+
+          // Dispatch login action
+          dispatch(loginUser(mockUserProfile));
+          
+          // Set authentication state in localStorage
+          localStorage.setItem('isAuthenticated', 'true');
+          
+          // Show success toast
+          dispatch(setToast({ message: 'Successfully logged in!', type: 'success' }));
+          
+          // Navigate to dashboard
           navigate('/dashboard');
         } else {
           // Failed login
           setLoginError('Invalid credentials. Please try again.');
+          dispatch(setToast({ message: 'Invalid credentials', type: 'error' }));
         }
       }, 1000);
     }

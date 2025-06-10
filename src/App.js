@@ -8,6 +8,9 @@ import './App.css'; // Global styles
 import PreLoginLayout from './layouts/PreLoginLayout';
 import PostLoginLayout from './layouts/PostLoginLayout';
 
+// Components
+import Toast from './components/Toast/Toast';
+
 // Pre-Login Pages
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -60,6 +63,7 @@ function App() {
         {/* Catch-all for undefined routes (optional) */}
         {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
       </Routes>
+      <Toast />
     </Router>
   );
 }

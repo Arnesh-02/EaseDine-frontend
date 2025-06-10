@@ -13,6 +13,7 @@ const initialState = {
     sortBy: 'rating', // 'rating', 'priceLowToHigh', 'priceHighToLow', 'name'
     sortOrder: 'desc', // 'asc', 'desc'
   },
+  toast: null, // { message: string, type: 'success' | 'error' }
   // Potentially add loading states, error messages etc.
   // isLoading: false,
   // error: null,
@@ -39,6 +40,12 @@ const uiSlice = createSlice({
     resetFilters: (state) => {
       state.filters = initialState.filters;
     },
+    setToast: (state, action) => {
+      state.toast = action.payload; // expects { message, type }
+    },
+    clearToast: (state) => {
+      state.toast = null;
+    },
     // Add more UI related actions as needed
   },
 });
@@ -49,6 +56,8 @@ export const {
   setFilter,
   setSortOption,
   resetFilters,
+  setToast,
+  clearToast,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

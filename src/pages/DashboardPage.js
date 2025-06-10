@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import PersonalizedHero from '../components/Hero/PersonalizedHero';
 import EnhancedFoodFilter from '../components/Filters/EnhancedFoodFilter';
-import FoodGrid from '../components/FoodGrid/FoodGrid';
+import FoodGrid from '../components/FoodGrid/FoodGrid.js';
 import RecommendationSections from '../components/Recommendations/RecommendationSections';
 // Import other post-login components here as they are created
 import { loginUser } from '../store/userSlice'; // For testing login flow
@@ -33,6 +33,8 @@ const DashboardPage = () => {
       ]
     };
     dispatch(loginUser(mockUserProfile));
+    // Set authentication state in localStorage for persistence
+    localStorage.setItem('isAuthenticated', 'true');
   }, [dispatch]);
 
 

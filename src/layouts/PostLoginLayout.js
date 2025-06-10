@@ -9,12 +9,13 @@ const PostLoginLayout = () => {
   const { isAuthenticated } = useSelector((state) => state.user);
   const { isCartSidebarOpen } = useSelector((state) => state.ui);
 
-  // TEMPORARY: Forcing login via DashboardPage's useEffect.
-  // In a real app, this layout should strictly redirect if !isAuthenticated.
-  // For now, we let DashboardPage handle the mock login.
-  // if (!isAuthenticated) {
-  //   return <Navigate to="/" replace />;
-  // }
+  // Implement persistent mock auth state using localStorage
+  const storedAuth = localStorage.getItem('isAuthenticated');
+  const isLoggedIn = isAuthenticated || storedAuth === 'true';
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <>

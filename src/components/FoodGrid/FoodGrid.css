@@ -111,7 +111,7 @@
 .food-card-price {
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--primary-color);
+  color: var(--primary);
 }
 
 .food-card-rating {
@@ -122,7 +122,7 @@
   color: var(--neutral-dark);
 }
 .food-card-rating svg {
-  color: var(--secondary-color); /* Gold for stars */
+  color: var(--secondary); /* Gold for stars */
   font-size: 1rem;
 }
 
@@ -141,7 +141,7 @@
 }
 
 .add-to-cart-quick-btn {
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   color: var(--white);
   border: none;
   padding: 10px 15px;
@@ -159,7 +159,7 @@
 }
 
 .add-to-cart-quick-btn:hover {
-  background-color: var(--primary-color-dark); /* Define if not present */
+  background-color: var(--primary-dark);
 }
 /* :root { --primary-color-dark: #E5533D; } /* Example if not in App.css */
 

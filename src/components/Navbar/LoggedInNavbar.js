@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { FiSearch, FiMenu, FiX, FiShoppingCart, FiUser } from 'react-icons/fi';
-import { toggleMobileMenu, toggleCartSidebar } from '../../store/uiSlice';
+import { toggleMobileMenu, toggleCartSidebar, setFilter } from '../../store/uiSlice';
 import { logoutUser } from '../../store/userSlice';
 import './LoggedInNavbar.css';
 
@@ -40,6 +40,8 @@ const LoggedInNavbar = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    // Clear authentication state from localStorage
+    localStorage.removeItem('isAuthenticated');
     // Redirect to home page
     window.location.href = '/';
   };
@@ -48,8 +50,8 @@ const LoggedInNavbar = () => {
     e.preventDefault();
     // Implement search functionality
     console.log('Searching for:', searchTerm);
-    // You could dispatch an action to update filters
-    // dispatch(setFilter({ filterName: 'searchTerm', value: searchTerm }));
+    // Dispatch action to update filters
+    dispatch(setFilter({ filterName: 'searchTerm', value: searchTerm }));
   };
 
   return (

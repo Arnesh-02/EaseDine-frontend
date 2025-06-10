@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaStar, FaCartPlus, FaHeart, FaRegHeart } from 'react-icons/fa';
 import { addItemToCart } from '../../store/cartSlice';
+import { setToast } from '../../store/uiSlice';
 // import { toggleFavoriteItem } from '../../store/userSlice'; // Or a dedicated foodSlice
 import './FoodGrid.css';
 
@@ -31,6 +32,7 @@ const FoodGrid = () => {
 
   const handleAddToCart = (item) => {
     dispatch(addItemToCart({ id: item.id, name: item.name, price: item.price, image: item.image }));
+    dispatch(setToast({ message: `${item.name} added to cart!`, type: 'success' }));
   };
 
   const handleToggleFavorite = (itemId) => {
@@ -123,3 +125,4 @@ const FoodGrid = () => {
 };
 
 export default FoodGrid;
+
