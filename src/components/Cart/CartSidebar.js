@@ -1,120 +1,140 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FiX, FiTrash2, FiPlus, FiMinus } from 'react-icons/fi';
+import { FiX, FiTrash2, FiPlusCircle, FiMinusCircle } from 'react-icons/fi';
 import { toggleCartSidebar, setToast } from '../../store/uiSlice';
 import { addItemToCart, removeItemFromCart, clearCart } from '../../store/cartSlice';
 import './CartSidebar.css';
 
 const CartSidebar = () => {
   const dispatch = useDispatch();
-  const { items, totalQuantity, totalAmount } = useSelector((state) => state.cart);
+  const { items: cartItems, totalAmount, totalQuantity } = useSelector((state) => state.cart);
+  const { isCartSidebarOpen } = useSelector((state) => state.ui);
 
   const handleCloseCart = () => {
     dispatch(toggleCartSidebar());
   };
 
-  const handleAddItem = (item) => {
-    dispatch(addItemToCart({ id: item.id, name: item.name, price: item.price, image: item.image }));
-    dispatch(setToast({ message: `Added one ${item.name} to cart`, type: 'success' }));
+  const handleIncreaseQuantity = (item) => {
+    dispatch(addItemToCart({ 
+      id: item.id, 
+      name: item.name, 
+      price: item.price, 
+      image: item.image 
+    }));
+    dispatch(setToast({ 
+      message: `Added one ${item.name} to cart`, 
+      type: 'success' 
+    }));
   };
 
-  const handleRemoveItem = (itemId) => {
-    const item = items.find(i => i.id === itemId);
+  const handleDecreaseQuantity = (itemId) => {
+    const item = cartItems.find(i => i.id === itemId);
     dispatch(removeItemFromCart(itemId));
     if (item && item.quantity === 1) {
-      dispatch(setToast({ message: `Removed ${item.name} from cart`, type: 'success' }));
+      dispatch(setToast({ 
+        message: `Removed ${item.name} from cart`, 
+        type: 'success' 
+      }));
     }
   };
 
   const handleClearCart = () => {
-    dispatch(clearCart());
-    dispatch(setToast({ message: 'Cart cleared!', type: 'success' }));
+    if (window.confirm("Are you sure you want to clear your cart?")) {
+      dispatch(clearCart());
+      dispatch(setToast({ 
+        message: 'Cart cleared!', 
+        type: 'success' 
+      }));
+    }
   };
 
+  if (!isCartSidebarOpen) {
+    return null;
+  }
+
   return (
-    <div className="cart-sidebar-overlay">
-      <div className="cart-sidebar">
-        <div className="cart-header">
-          <h3>Your Cart ({totalQuantity})</h3>
-          <button className="close-cart-btn" onClick={handleCloseCart}>
+    <>
+      <div className="cart-sidebar-overlay" onClick={handleCloseCart}></div>
+      <aside className={`cart-sidebar ${isCartSidebarOpen ? 'open' : ''}`}>
+        <div className="cart-sidebar-header">
+          <h3>Your Cart ({totalQuantity} items)</h3>
+          <button 
+            onClick={handleCloseCart} 
+            className="close-cart-btn" 
+            aria-label="Close cart"
+          >
             <FiX />
           </button>
         </div>
 
-        {items.length === 0 ? (
-          <div className="empty-cart">
-            <div className="empty-cart-icon">🛒</div>
-            <p>Your cart is empty</p>
-            <button className="browse-btn" onClick={handleCloseCart}>
-              Browse Food
-            </button>
+        {cartItems.length === 0 ? (
+          <div className="cart-empty-message">
+            <p>Your cart is currently empty.</p>
+            <Link 
+              to="/dashboard" 
+              onClick={handleCloseCart} 
+              className="btn-primary"
+            >
+              Start Shopping
+            </Link>
           </div>
         ) : (
           <>
-            <div className="cart-items">
-              {items.map((item) => (
+            <div className="cart-items-list">
+              {cartItems.map(item => (
                 <div className="cart-item" key={item.id}>
-                  <div className="cart-item-image">
-                    <img src={item.image} alt={item.name} />
-                  </div>
+                  <img 
+                    src={item.image || 'https://via.placeholder.com/80x80.png?text=Food'} 
+                    alt={item.name} 
+                    className="cart-item-image" 
+                  />
                   <div className="cart-item-details">
-                    <h4>{item.name}</h4>
-                    <div className="cart-item-price">${item.price.toFixed(2)}</div>
-                    <div className="cart-item-actions">
-                      <div className="quantity-controls">
-                        <button 
-                          className="quantity-btn" 
-                          onClick={() => handleRemoveItem(item.id)}
-                          aria-label="Decrease quantity"
-                        >
-                          <FiMinus />
-                        </button>
-                        <span className="quantity">{item.quantity}</span>
-                        <button 
-                          className="quantity-btn" 
-                          onClick={() => handleAddItem(item)}
-                          aria-label="Increase quantity"
-                        >
-                          <FiPlus />
-                        </button>
-                      </div>
+                    <p className="cart-item-name">{item.name}</p>
+                    <p className="cart-item-price">${item.price.toFixed(2)}</p>
+                    <div className="cart-item-quantity-controls">
                       <button 
-                        className="remove-item-btn" 
-                        onClick={() => {
-                          // Remove all quantities of this item
-                          for (let i = 0; i < item.quantity; i++) {
-                            handleRemoveItem(item.id);
-                          }
-                        }}
-                        aria-label="Remove item"
+                        onClick={() => handleDecreaseQuantity(item.id)}
+                        aria-label="Decrease quantity"
                       >
-                        <FiTrash2 />
+                        <FiMinusCircle />
+                      </button>
+                      <span>{item.quantity}</span>
+                      <button 
+                        onClick={() => handleIncreaseQuantity(item)}
+                        aria-label="Increase quantity"
+                      >
+                        <FiPlusCircle />
                       </button>
                     </div>
                   </div>
+                  <p className="cart-item-total-price">
+                    ${(item.price * item.quantity).toFixed(2)}
+                  </p>
                 </div>
               ))}
             </div>
 
-            <div className="cart-summary">
-              <div className="cart-total">
-                <span>Total:</span>
-                <span>${totalAmount.toFixed(2)}</span>
+            <div className="cart-sidebar-footer">
+              <div className="cart-summary">
+                <p>Subtotal:</p>
+                <p className="cart-total-amount">${totalAmount.toFixed(2)}</p>
               </div>
-              <div className="cart-actions">
-                <button className="clear-cart-btn" onClick={handleClearCart}>
-                  Clear Cart
-                </button>
-                <Link to="/checkout" className="checkout-btn" onClick={handleCloseCart}>
-                  Checkout
-                </Link>
-              </div>
+              <Link 
+                to="/checkout" 
+                onClick={handleCloseCart} 
+                className="btn-primary checkout-btn"
+              >
+                Proceed to Checkout
+              </Link>
+              <button onClick={handleClearCart} className="clear-cart-btn">
+                <FiTrash2 /> Clear Cart
+              </button>
             </div>
           </>
         )}
-      </div>
-    </div>
+      </aside>
+    </>
   );
 };
 
