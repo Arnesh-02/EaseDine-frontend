@@ -209,3 +209,69 @@
     z-index: 1001; /* Ensure it's above the slide-in menu */
   }
 }
+
+.navbar-dropdown {
+  position: relative;
+}
+
+.navbar-dropdown > span {
+  cursor: pointer;
+  padding: 5px 0;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.navbar-dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: var(--white);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  min-width: 180px;
+  z-index: 10;
+  border-radius: 4px;
+  padding: 0.5rem 0;
+}
+
+.navbar-dropdown:hover .navbar-dropdown-menu {
+  display: block;
+}
+
+.navbar-dropdown-menu li {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-dropdown-menu a {
+  display: block;
+  padding: 10px 20px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.navbar-dropdown-menu a:hover {
+  background: var(--neutral-light);
+  color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .navbar-dropdown-menu {
+    display: block;
+    position: static;
+    box-shadow: none;
+    background: none;
+    min-width: 0;
+    padding: 0;
+  }
+  .navbar-dropdown > span {
+    display: block;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+  }
+  .navbar-dropdown-menu a {
+    padding: 10px 40px;
+  }
+}

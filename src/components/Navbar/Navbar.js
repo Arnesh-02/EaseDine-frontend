@@ -36,6 +36,15 @@ const Navbar = () => {
             <li><a href="#food" onClick={() => isMobileMenuOpen && toggleMobileMenu()}>Food</a></li>
             <li><a href="#recipes" onClick={() => isMobileMenuOpen && toggleMobileMenu()}>Recipes</a></li>
             <li><a href="#contact" onClick={() => isMobileMenuOpen && toggleMobileMenu()}>Contact</a></li>
+            <li className="navbar-dropdown">
+              <span>For Restaurants ▾</span>
+              <ul className="navbar-dropdown-menu">
+                <li><Link to="/restaurant/register" onClick={() => isMobileMenuOpen && toggleMobileMenu()}>Register Restaurant</Link></li>
+                <li><Link to="/restaurant/login" onClick={() => isMobileMenuOpen && toggleMobileMenu()}>Restaurant Login</Link></li>
+                <li><Link to="/restaurant/dashboard" onClick={() => isMobileMenuOpen && toggleMobileMenu()}>Dashboard</Link></li>
+                <li><Link to="/restaurant/all" onClick={() => isMobileMenuOpen && toggleMobileMenu()}>All Restaurants</Link></li>
+              </ul>
+            </li>
           </ul>
           <div className="navbar-search-mobile">
             <input type="text" placeholder="Search food..." />

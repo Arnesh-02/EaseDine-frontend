@@ -195,6 +195,9 @@ const LoginPage = () => {
         <div className="auth-redirect">
           Don't have an account? <Link to="/signup">Sign up</Link>
         </div>
+        <div className="auth-redirect">
+          <span>Are you a restaurant? </span><Link to="/restaurant/login">Login as Restaurant</Link>
+        </div>
       </div>
     </div>
   );

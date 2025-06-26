@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './App.css'; // Global styles
 
@@ -16,6 +15,11 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import RestaurantLoginPage from './pages/RestaurantLoginPage';
+import RestaurantRegisterPage from './pages/RestaurantRegisterPage';
+import RestaurantDashboardPage from './pages/RestaurantDashboardPage';
+import RestaurantListPage from './pages/RestaurantListPage';
+import RestaurantDetailPage from './pages/RestaurantDetailPage';
 
 // Post-Login Pages
 import DashboardPage from './pages/DashboardPage';
@@ -42,6 +46,13 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           {/* Add other public routes like /about, /contact here if they use PreLoginLayout */}
         </Route>
+
+        {/* Restaurant Routes (public for now) */}
+        <Route path="/restaurant/login" element={<RestaurantLoginPage />} />
+        <Route path="/restaurant/register" element={<RestaurantRegisterPage />} />
+        <Route path="/restaurant/dashboard" element={<RestaurantDashboardPage />} />
+        <Route path="/restaurant/all" element={<RestaurantListPage />} />
+        <Route path="/restaurant/:id" element={<RestaurantDetailPage />} />
 
         {/* Post-Login Routes */}
         {/* Option 1: Using a layout that internally checks auth (as PostLoginLayout does) */}

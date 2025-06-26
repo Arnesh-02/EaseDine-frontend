@@ -53,7 +53,7 @@ const SignupPage = () => {
     
     if (isLongEnough && hasLetter && hasNumber && hasSpecial) {
       setPasswordStrength('strong');
-    } else if (isLongEnough && (hasLetter && hasNumber || hasLetter && hasSpecial || hasNumber && hasSpecial)) {
+    } else if (isLongEnough && ((hasLetter && hasNumber) || (hasLetter && hasSpecial) || (hasNumber && hasSpecial))) {
       setPasswordStrength('medium');
     } else {
       setPasswordStrength('weak');
@@ -263,6 +263,9 @@ const SignupPage = () => {
         
         <div className="auth-redirect">
           Already have an account? <Link to="/login">Log in</Link>
+        </div>
+        <div className="auth-redirect">
+          <span>Are you a restaurant? </span><Link to="/restaurant/register">Register as Restaurant</Link>
         </div>
       </div>
     </div>

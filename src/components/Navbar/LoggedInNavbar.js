@@ -10,7 +10,7 @@ const LoggedInNavbar = () => {
   const dispatch = useDispatch();
   const { isMobileMenuOpen } = useSelector((state) => state.ui);
   const { profile } = useSelector((state) => state.user);
-  const { items, totalQuantity } = useSelector((state) => state.cart);
+  const { totalQuantity } = useSelector((state) => state.cart);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
